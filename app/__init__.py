@@ -35,7 +35,7 @@ def create_app(config_name):
     user = os.getenv('INVENTORY_DB_USER', 'insights')
     password = os.getenv('INVENTORY_DB_PASS', 'insights')
     host = os.getenv('INVENTORY_DB_HOST', 'localhost')
-    db_name = os.getenv('INVENTORY_DB_NAME', 'test_db')
+    db_name = 'test_db' if config_name == 'testing' else os.getenv('INVENTORY_DB_NAME', 'inventory')
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}/{db_name}'
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
